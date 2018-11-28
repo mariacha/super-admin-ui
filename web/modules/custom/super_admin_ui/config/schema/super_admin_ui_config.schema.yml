@@ -1,6 +1,6 @@
 super_admin_ui.super_admin_ui_config.*:
   type: config_entity
-  label: 'Super Admin UI config config'
+  label: 'Super Admin UI config'
   mapping:
     id:
       type: string

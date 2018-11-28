@@ -1,14 +1,6 @@
-super_admin_ui.super_admin_listing:
-  title: 'Super Admin'
-  route_name: super_admin_ui.super_admin_u_i_list_list
-  description: 'A Super Admin interface for quickly altering entities and settings.'
-  parent: system.admin_config_system
-  weight: 99
-
-
 # Super Admin UI config menu items definition
 entity.super_admin_ui_config.collection:
-  title: 'Super Admin UI config'
+  title: 'Super Admin UI'
   route_name: entity.super_admin_ui_config.collection
   description: 'List Super Admin UI config (bundles)'
   parent: system.admin_config_system
