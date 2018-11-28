@@ -38,6 +38,7 @@ module:
   search: 0
   shortcut: 0
   smart_trim: 0
+  super_admin_ui: 0
   system: 0
   taxonomy: 0
   text: 0
