@@ -19,13 +19,19 @@ class SuperAdminUIConfigEntityViewBuilder extends EntityViewBuilder {
     $config = \Drupal::entityTypeManager()->getStorage($entity->id());
     $properties = $config->getEntityType()->getPropertiesToExport();
 
+    unset($properties['_core']);
+
     foreach ($properties as $property) {
       $header[$property] = $property;
     }
 
+    // TODO: Right now this is dumb. Make the callback for this configurable.
     foreach ($config->loadMultiple() as $type) {
       foreach ($properties as $property) {
         $content[$type->id()][$property] = $type->get($property);
+        if (is_array($content[$type->id()][$property])) {
+          $content[$type->id()][$property] = 'array';
+        }
       }
     }
 
