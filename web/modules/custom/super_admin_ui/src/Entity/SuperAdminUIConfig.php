@@ -57,4 +57,5 @@ class SuperAdminUIConfig extends ConfigEntityBase implements SuperAdminUIConfigI
     $original_config = $this->entityTypeManager()->getDefinition($id);
     return $original_config->getLabel();
   }
+
 }

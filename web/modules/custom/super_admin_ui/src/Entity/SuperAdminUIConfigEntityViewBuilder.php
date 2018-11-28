@@ -11,6 +11,10 @@ use Drupal\Core\Entity\EntityInterface;
  * @ingroup entity_api
  */
 class SuperAdminUIConfigEntityViewBuilder extends EntityViewBuilder {
+
+  /**
+   * {@inheritdoc}
+   */
   public function view(EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
     foreach (\Drupal::entityTypeManager()->getStorage($entity->id())->loadMultiple() as $type) {
       $content[$type->id()][] = $type->label();
@@ -23,4 +27,5 @@ class SuperAdminUIConfigEntityViewBuilder extends EntityViewBuilder {
 
     return $table;
   }
+
 }

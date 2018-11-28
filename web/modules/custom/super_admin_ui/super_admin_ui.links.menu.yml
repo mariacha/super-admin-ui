@@ -5,4 +5,3 @@ entity.super_admin_ui_config.collection:
   description: 'List Super Admin UI config (bundles)'
   parent: system.admin_config_system
   weight: 99
-

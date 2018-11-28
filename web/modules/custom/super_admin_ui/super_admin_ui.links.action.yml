@@ -3,4 +3,3 @@ entity.super_admin_ui_config.add_form:
   title: 'Add Super Admin UI config'
   appears_on:
     - entity.super_admin_ui_config.collection
-
