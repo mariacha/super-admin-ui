@@ -16,13 +16,23 @@ class SuperAdminUIConfigEntityViewBuilder extends EntityViewBuilder {
    * {@inheritdoc}
    */
   public function view(EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
-    foreach (\Drupal::entityTypeManager()->getStorage($entity->id())->loadMultiple() as $type) {
-      $content[$type->id()][] = $type->label();
+    $config = \Drupal::entityTypeManager()->getStorage($entity->id());
+    $properties = $config->getEntityType()->getPropertiesToExport();
+
+    foreach ($properties as $property) {
+      $header[$property] = $property;
+    }
+
+    foreach ($config->loadMultiple() as $type) {
+      foreach ($properties as $property) {
+        $content[$type->id()][$property] = $type->get($property);
+      }
     }
 
     $table = [
       '#type' => 'table',
       '#rows' => $content,
+      '#header' => $header,
     ];
 
     return $table;
