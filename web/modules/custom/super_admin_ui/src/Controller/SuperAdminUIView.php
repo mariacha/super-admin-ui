@@ -17,6 +17,7 @@ class SuperAdminUIView extends ControllerBase {
    */
   public function view($config_entity_type) {
     // TODO: $config_entity_type is a string. Is there a way to get it as an entity already?
+    $content = [];
 
     foreach ($this->entityTypeManager()->getStorage($config_entity_type)->loadMultiple() as $type) {
       $access = $this->entityTypeManager()->getAccessControlHandler('node')->createAccess($type->id(), NULL, [], TRUE);
