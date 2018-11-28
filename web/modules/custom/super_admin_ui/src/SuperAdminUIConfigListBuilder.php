@@ -28,7 +28,6 @@ class SuperAdminUIConfigListBuilder extends ConfigEntityListBuilder {
     $url = Url::fromUserInput('/admin/config/super-admin/super_admin_ui_config/' . $entity->id());
     $row['label'] = Link::fromTextAndUrl($entity->label(), $url);
     $row['id'] = $entity->id();
-    // You probably want a few more properties here...
     return $row + parent::buildRow($entity);
   }
 
