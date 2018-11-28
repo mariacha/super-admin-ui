@@ -1,0 +1,38 @@
+#
+# behat.yml file for testing with both Behat and the Drupal site running on
+# the local system.
+#
+default:
+  suites:
+    default:
+      paths:
+        - %paths.base%/features
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
+    Behat\MinkExtension:
+      goutte: ~
+      browser_name: chrome
+      sessions:
+        default:
+          chrome:
+            api_url: http://localhost:9222
+      files_path: './behat/data-files'
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: drupal
+      text:
+        username_field: "edit-name"
+        password_field: "edit-pass"
+      region_map:
+        header: ".region-header"
+        side_nav: ".region-side-nav"
+        content_top: ".region-content-top"
+        content: ".region-content"
+        content_bottom: ".region-content-bottom"
+        footer: ".region-footer"
