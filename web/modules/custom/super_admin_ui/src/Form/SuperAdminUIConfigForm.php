@@ -15,24 +15,24 @@ class SuperAdminUIConfigForm extends EntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+    $config_options = [];
+
+    foreach ($this->entityTypeManager->getDefinitions() as $type) {
+      $config_options[$type->id()] = $type->getLabel();
+    }
+
+    asort($config_options);
 
     $super_admin_ui_config = $this->entity;
-    $form['label'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Label'),
+    $form['id'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Config schema'),
       '#maxlength' => 255,
-      '#default_value' => $super_admin_ui_config->label(),
+      '#default_value' => $super_admin_ui_config->id(),
       '#description' => $this->t("Label for the Super Admin UI config."),
       '#required' => TRUE,
-    ];
-
-    $form['id'] = [
-      '#type' => 'machine_name',
-      '#default_value' => $super_admin_ui_config->id(),
-      '#machine_name' => [
-        'exists' => '\Drupal\super_admin_ui\Entity\SuperAdminUIConfig::load',
-      ],
       '#disabled' => !$super_admin_ui_config->isNew(),
+      '#options' => $config_options,
     ];
 
     /* You will need additional form elements for your custom properties. */

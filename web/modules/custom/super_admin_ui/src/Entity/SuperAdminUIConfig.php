@@ -26,7 +26,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   admin_permission = "administer site configuration",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "label",
  *     "uuid" = "uuid"
  *   },
  *   links = {
@@ -48,10 +47,14 @@ class SuperAdminUIConfig extends ConfigEntityBase implements SuperAdminUIConfigI
   protected $id;
 
   /**
-   * The Super Admin UI config label.
+   * {@inheritdoc}
    *
-   * @var string
+   * Pull in the config entity's label.
    */
-  protected $label;
+  public function label() {
+    $id = $this->id();
 
+    $original_config = $this->entityTypeManager()->getDefinition($id);
+    return $original_config->getLabel();
+  }
 }
