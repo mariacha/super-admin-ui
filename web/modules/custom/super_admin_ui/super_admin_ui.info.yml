@@ -1,0 +1,5 @@
+name: Super Admin UI
+type: module
+description: Super Admin UI that mimics a Google Config sheet.
+core: 8.x
+package: Custom

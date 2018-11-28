@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains super_admin_ui.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function super_admin_ui_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the super_admin_ui module.
+    case 'help.page.super_admin_ui':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Super Admin UI that mimics a Google Config sheet.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
