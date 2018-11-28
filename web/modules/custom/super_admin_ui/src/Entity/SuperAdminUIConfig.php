@@ -11,7 +11,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   id = "super_admin_ui_config",
  *   label = @Translation("Super Admin UI config"),
  *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "view_builder" = "Drupal\super_admin_ui\Entity\SuperAdminUIConfigEntityViewBuilder",
  *     "list_builder" = "Drupal\super_admin_ui\SuperAdminUIConfigListBuilder",
  *     "form" = {
  *       "add" = "Drupal\super_admin_ui\Form\SuperAdminUIConfigForm",
