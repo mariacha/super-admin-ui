@@ -1,0 +1,5 @@
+uuid: fc25be3b-c250-404e-88be-7b728d0d8529
+langcode: en
+status: true
+dependencies: {  }
+id: field_storage_config

@@ -17,9 +17,18 @@ class SuperAdminUIConfigForm extends EntityForm {
     $form = parent::form($form, $form_state);
     $config_options = [];
 
+    // Get all the config entity types.
     foreach ($this->entityTypeManager->getDefinitions() as $type) {
       $config_options[$type->id()] = $type->getLabel();
     }
+
+    // Remove any that we already have settings for.
+    foreach ($this->entityTypeManager->getStorage('super_admin_ui_config')->loadMultiple() as $type) {
+      unset($config_options[$type->id()]);
+    }
+
+    // Remove the references to this module's config.
+    unset($config_options['super_admin_ui_config']);
 
     asort($config_options);
 
