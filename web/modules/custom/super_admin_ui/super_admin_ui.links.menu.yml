@@ -5,3 +5,12 @@ super_admin_ui.super_admin_listing:
   parent: system.admin_config_system
   weight: 99
 
+
+# Super Admin UI config menu items definition
+entity.super_admin_ui_config.collection:
+  title: 'Super Admin UI config'
+  route_name: entity.super_admin_ui_config.collection
+  description: 'List Super Admin UI config (bundles)'
+  parent: system.admin_config_system
+  weight: 99
+

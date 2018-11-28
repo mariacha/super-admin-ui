@@ -1,0 +1,12 @@
+super_admin_ui.super_admin_ui_config.*:
+  type: config_entity
+  label: 'Super Admin UI config config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
