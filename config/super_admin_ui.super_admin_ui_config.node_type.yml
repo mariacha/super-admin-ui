@@ -1,0 +1,6 @@
+uuid: 41d63aef-d0ef-4b25-aac3-7c91d636acef
+langcode: en
+status: true
+dependencies: {  }
+id: node_type
+label: 'Node type'
