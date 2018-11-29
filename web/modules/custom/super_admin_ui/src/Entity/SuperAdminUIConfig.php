@@ -34,6 +34,9 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "edit-form" = "/admin/config/super-admin/super_admin_ui_config/{super_admin_ui_config}/edit",
  *     "delete-form" = "/admin/config/super-admin/super_admin_ui_config/{super_admin_ui_config}/delete",
  *     "collection" = "/admin/config/super-admin/super_admin_ui_config"
+ *   },
+ *   config_export = {
+ *     "fields" = "fields
  *   }
  * )
  */
@@ -45,6 +48,13 @@ class SuperAdminUIConfig extends ConfigEntityBase implements SuperAdminUIConfigI
    * @var string
    */
   protected $id;
+
+  /**
+   * The fields to display in the form.
+   *
+   * @var array
+   */
+  protected $fields = [];
 
   /**
    * {@inheritdoc}
