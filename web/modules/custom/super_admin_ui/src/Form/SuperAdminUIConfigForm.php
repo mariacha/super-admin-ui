@@ -49,7 +49,21 @@ class SuperAdminUIConfigForm extends EntityForm {
       '#options' => $config_options,
     ];
 
-    /* You will need additional form elements for your custom properties. */
+    if (!$super_admin_ui_config->isNew()) {
+      $fields = $this->entity->getFields();
+
+      $available_fields = $this->entity->getAvailableFields();
+
+      $form['add_field'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Add a Field'),
+        '#empty_value' => '',
+        '#default_value' => 'none',
+        '#description' => $this->t("Add a field to display on this config."),
+        '#required' => FALSE,
+        '#options' => $available_fields,
+      ];
+    }
 
     return $form;
   }

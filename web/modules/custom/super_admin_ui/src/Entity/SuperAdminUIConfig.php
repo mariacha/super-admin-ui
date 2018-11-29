@@ -68,4 +68,28 @@ class SuperAdminUIConfig extends ConfigEntityBase implements SuperAdminUIConfigI
     return $original_config->getLabel();
   }
 
+  /**
+   * @return array
+   */
+  public function getFields() {
+    return $this->fields;
+  }
+
+  /**
+   * Gets all the available fields based on the config entity.
+   *
+   * @return mixed
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function getAvailableFields() {
+    $config = \Drupal::entityTypeManager()->getStorage($this->id());
+    $properties = $config->getEntityType()->getPropertiesToExport();
+
+    unset($properties['_core']);
+
+    ksort($properties);
+
+    return $properties;
+  }
 }

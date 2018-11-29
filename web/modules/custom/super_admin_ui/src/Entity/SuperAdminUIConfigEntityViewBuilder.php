@@ -17,9 +17,7 @@ class SuperAdminUIConfigEntityViewBuilder extends EntityViewBuilder {
    */
   public function view(EntityInterface $entity, $view_mode = 'full', $langcode = NULL) {
     $config = \Drupal::entityTypeManager()->getStorage($entity->id());
-    $properties = $config->getEntityType()->getPropertiesToExport();
-
-    unset($properties['_core']);
+    $properties = $entity->getAvailableFields();
 
     foreach ($properties as $property) {
       $header[$property] = $property;
