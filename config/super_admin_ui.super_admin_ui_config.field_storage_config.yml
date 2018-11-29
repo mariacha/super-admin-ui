@@ -3,3 +3,4 @@ langcode: en
 status: true
 dependencies: {  }
 id: field_storage_config
+fields: {  }

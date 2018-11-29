@@ -36,6 +36,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "collection" = "/admin/config/super-admin/super_admin_ui_config"
  *   },
  *   config_export = {
+ *     "id" = "id",
  *     "fields" = "fields"
  *   }
  * )

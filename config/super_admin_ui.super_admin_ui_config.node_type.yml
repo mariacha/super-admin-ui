@@ -3,4 +3,4 @@ langcode: en
 status: true
 dependencies: {  }
 id: node_type
-label: 'Node type'
+fields: {  }
