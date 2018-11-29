@@ -2,6 +2,7 @@
 
 namespace Drupal\super_admin_ui\Form;
 
+use Drupal\Core\Config\Entity\ConfigEntityType;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -15,16 +16,21 @@ class SuperAdminUIConfigForm extends EntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+    $super_admin_ui_config = $this->entity;
     $config_options = [];
 
     // Get all the config entity types.
     foreach ($this->entityTypeManager->getDefinitions() as $type) {
-      $config_options[$type->id()] = $type->getLabel();
+      if ($type instanceof ConfigEntityType) {
+        $config_options[$type->id()] = $type->getLabel();
+      }
     }
 
     // Remove any that we already have settings for.
     foreach ($this->entityTypeManager->getStorage('super_admin_ui_config')->loadMultiple() as $type) {
-      unset($config_options[$type->id()]);
+      if ($type->id() != $super_admin_ui_config->id()) {
+        unset($config_options[$type->id()]);
+      }
     }
 
     // Remove the references to this module's config.
@@ -32,7 +38,6 @@ class SuperAdminUIConfigForm extends EntityForm {
 
     asort($config_options);
 
-    $super_admin_ui_config = $this->entity;
     $form['id'] = [
       '#type' => 'select',
       '#title' => $this->t('Config schema'),
