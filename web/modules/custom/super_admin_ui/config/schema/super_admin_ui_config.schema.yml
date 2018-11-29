@@ -7,3 +7,16 @@ super_admin_ui.super_admin_ui_config.*:
       label: 'ID'
     uuid:
       type: string
+    fields:
+      type: sequence
+      label: 'Fields'
+      sequence:
+        type: mapping
+        label: 'Field settings'
+        mapping:
+          id:
+            type: string
+            label: 'Machine name'
+          display_title:
+            type: text
+            label: 'Label'
