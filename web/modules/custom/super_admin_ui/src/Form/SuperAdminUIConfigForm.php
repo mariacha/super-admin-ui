@@ -71,7 +71,9 @@ class SuperAdminUIConfigForm extends EntityForm {
             '#value' => $field['display_title'],
           ];
           $form['fields'][$key]['id'] = [
-            '#markup' => $field['id'],
+            '#type' => 'textfield',
+            '#value' => $field['id'],
+            '#disabled' => TRUE,
           ];
           $form['fields'][$key]['delete'] = [
             '#type' => 'checkbox',
@@ -107,11 +109,13 @@ class SuperAdminUIConfigForm extends EntityForm {
       $super_admin_ui_config->setField($new_field);
     }
 
-    $fields = $form_state->getValue('field');
+    $fields = $form_state->getValue('fields');
 
-    foreach ($fields as $key => $field) {
-      if ($field[$key]['delete']) {
-        $super_admin_ui_config->unsetField($new_field);
+    if (is_array($fields)) {
+      foreach ($fields as $key => $field) {
+        if ($field['delete']) {
+          $super_admin_ui_config->unsetField($key);
+        }
       }
     }
 
@@ -129,7 +133,6 @@ class SuperAdminUIConfigForm extends EntityForm {
           '%label' => $super_admin_ui_config->label(),
         ]));
     }
-    $form_state->setRedirectUrl($super_admin_ui_config->toUrl('collection'));
   }
 
 }

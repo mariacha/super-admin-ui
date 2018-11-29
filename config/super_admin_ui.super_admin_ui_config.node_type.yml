@@ -3,4 +3,11 @@ langcode: en
 status: true
 dependencies: {  }
 id: node_type
-fields: {  }
+fields:
+  type:
+    display_title: type
+    id: type
+    delete: 0
+  help:
+    id: help
+    display_title: help
