@@ -3,4 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: node_type
-fields: {  }
+fields:
+  description:
+    id: description
+    display_value: description

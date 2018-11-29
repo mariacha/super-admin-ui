@@ -77,6 +77,16 @@ class SuperAdminUIConfig extends ConfigEntityBase implements SuperAdminUIConfigI
   }
 
   /**
+   * @return array
+   */
+  public function setField($value) {
+    $this->fields[$value] = [
+      'id' => $value,
+      'display_value' => $value,
+    ];
+  }
+
+  /**
    * Gets all the available fields based on the config entity.
    *
    * @return mixed

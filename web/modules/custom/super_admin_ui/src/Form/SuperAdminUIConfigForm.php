@@ -52,6 +52,32 @@ class SuperAdminUIConfigForm extends EntityForm {
     if (!$super_admin_ui_config->isNew()) {
       $fields = $this->entity->getFields();
 
+      if (!empty($fields)) {
+
+        $form['fields'] = [
+          '#type' => 'table',
+          '#caption' => $this
+            ->t('Fields available to this config'),
+          '#header' => [
+            $this
+              ->t('Name'),
+            $this
+              ->t('Machine name')
+          ],
+        ];
+
+        foreach ($fields as $key => $field) {
+          $form['fields'][$key]['display_title'] = [
+            '#type' => 'textfield',
+            '#value' => $this->entity->fields[$key]->display_title,
+          ];
+          $form['contacts'][$key]['id'] = [
+            '#type' => 'textfield',
+            '#value' => $this->entity->fields[$key]->id,
+          ];
+        }
+      }
+
       $available_fields = $this->entity->getAvailableFields();
 
       $form['add_field'] = [
@@ -73,6 +99,10 @@ class SuperAdminUIConfigForm extends EntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     $super_admin_ui_config = $this->entity;
+
+    $new_field = $form_state->getValue('add_field');
+    $super_admin_ui_config->setField($new_field);
+
     $status = $super_admin_ui_config->save();
 
     switch ($status) {
