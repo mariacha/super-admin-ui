@@ -9,5 +9,6 @@ fields:
     id: type
     delete: 0
   help:
+    display_title: 'Help text'
     id: help
-    display_title: help
+    delete: 0
