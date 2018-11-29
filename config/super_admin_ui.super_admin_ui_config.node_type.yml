@@ -1,9 +1,6 @@
-uuid: 41d63aef-d0ef-4b25-aac3-7c91d636acef
+uuid: dd0ef5db-e326-4830-805a-a208646c071e
 langcode: en
 status: true
 dependencies: {  }
 id: node_type
-fields:
-  description:
-    id: description
-    display_value: description
+fields: {  }

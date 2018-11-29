@@ -59,21 +59,22 @@ class SuperAdminUIConfigForm extends EntityForm {
           '#caption' => $this
             ->t('Fields available to this config'),
           '#header' => [
-            $this
-              ->t('Name'),
-            $this
-              ->t('Machine name')
+            'display_title' => $this->t('Name'),
+            'id' => $this->t('Machine name'),
+            'delete' => $this->t('Delete'),
           ],
         ];
 
         foreach ($fields as $key => $field) {
           $form['fields'][$key]['display_title'] = [
             '#type' => 'textfield',
-            '#value' => $this->entity->fields[$key]->display_title,
+            '#value' => $field['display_title'],
           ];
-          $form['contacts'][$key]['id'] = [
-            '#type' => 'textfield',
-            '#value' => $this->entity->fields[$key]->id,
+          $form['fields'][$key]['id'] = [
+            '#markup' => $field['id'],
+          ];
+          $form['fields'][$key]['delete'] = [
+            '#type' => 'checkbox',
           ];
         }
       }
@@ -101,7 +102,18 @@ class SuperAdminUIConfigForm extends EntityForm {
     $super_admin_ui_config = $this->entity;
 
     $new_field = $form_state->getValue('add_field');
-    $super_admin_ui_config->setField($new_field);
+
+    if (!empty($new_field)) {
+      $super_admin_ui_config->setField($new_field);
+    }
+
+    $fields = $form_state->getValue('field');
+
+    foreach ($fields as $key => $field) {
+      if ($field[$key]['delete']) {
+        $super_admin_ui_config->unsetField($new_field);
+      }
+    }
 
     $status = $super_admin_ui_config->save();
 
